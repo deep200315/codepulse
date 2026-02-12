@@ -1,0 +1,101 @@
+{
+  "name": "codepulse",
+  "displayName": "CodePulse",
+  "description": "Privacy-first coding activity tracker. Tracks active time, idle detection, WPM, and language usage \u2014 all data stays local.",
+  "version": "0.1.0",
+  "publisher": "codepulse",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deep200315/codepulse"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codepulse.showStats",
+        "title": "CodePulse: Show Today's Stats"
+      },
+      {
+        "command": "codepulse.exportData",
+        "title": "CodePulse: Export Data"
+      }
+    ],
+    "configuration": {
+      "title": "CodePulse",
+      "properties": {
+        "codepulse.idleTimeout": {
+          "type": "number",
+          "default": 120,
+          "description": "Seconds of inactivity before CodePulse considers you idle."
+        },
+        "codepulse.showWpm": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show words-per-minute in the status bar."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "codepulse.welcome",
+        "title": "Welcome to CodePulse",
+        "description": "Privacy-first coding activity tracking. All data stays on your machine.",
+        "steps": [
+          {
+            "id": "codepulse.welcome.intro",
+            "title": "Your Coding Dashboard",
+            "description": "CodePulse tracks your active coding time, typing speed (WPM), and language usage \u2014 right in the status bar.\n\n[Show Stats](command:codepulse.showStats)",
+            "media": {
+              "markdown": "media/walkthrough/intro.md"
+            }
+          },
+          {
+            "id": "codepulse.welcome.privacy",
+            "title": "100% Private",
+            "description": "Zero telemetry. Zero network calls. All data is stored locally on your machine.\n\nYou own your data \u2014 export it anytime as JSON or CSV.",
+            "media": {
+              "markdown": "media/walkthrough/privacy.md"
+            }
+          },
+          {
+            "id": "codepulse.welcome.statusbar",
+            "title": "Your Status Bar",
+            "description": "Look at the status bar \u2014 you'll see your active time, current language, and WPM.\n\nClick it for a full breakdown of today's stats.",
+            "media": {
+              "markdown": "media/walkthrough/statusbar.md"
+            }
+          },
+          {
+            "id": "codepulse.welcome.export",
+            "title": "Export Your Data",
+            "description": "Use the Command Palette and search for **CodePulse: Export Data** to save your stats as JSON or CSV.\n\n[Export Data](command:codepulse.exportData)",
+            "media": {
+              "markdown": "media/walkthrough/export.md"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  }
+}
